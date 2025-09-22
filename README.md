@@ -1,0 +1,2 @@
+# authCore
+API de Autenticação
