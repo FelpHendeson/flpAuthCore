@@ -1,0 +1,17 @@
+{
+  "types": [
+    { "type": "feat", "section": "✨ Funcionalidades" },
+    { "type": "fix", "section": "🐛 Correções" },
+    { "type": "docs", "section": "📝 Documentação" },
+    { "type": "refactor", "section": "♻️ Refatoração" },
+    { "type": "perf", "section": "⚡ Performance" },
+    { "type": "test", "section": "✅ Testes" },
+    { "type": "build", "section": "📦 Build" },
+    { "type": "chore", "section": "🔧 Manutenção" }
+  ],
+  "releaseCommitMessageFormat": "chore(release): {{currentTag}}",
+  "skip": {
+    "changelog": false,
+    "tag": false
+  }
+}
