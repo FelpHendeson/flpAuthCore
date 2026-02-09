@@ -1,0 +1,49 @@
+{
+  "name": "auth",
+  "version": "0.0.1",
+  "description": "API de Autenticação",
+  "main": "dist/server.js",
+  "type": "module",
+  "scripts": {
+    "build": "tsup",
+    "start": "node dist/server.js",
+    "dev": "tsx watch src/server.ts",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "prepare": "husky || true",
+    "release": "standard-version",
+    "release:minor": "standard-version --release-as minor",
+    "release:major": "standard-version --release-as major",
+    "release:first": "standard-version --first-release"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/FelpHendeson/flpAuthCore.git"
+  },
+  "keywords": [],
+  "author": "FelpHendeson",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/FelpHendeson/flpAuthCore/issues"
+  },
+  "homepage": "https://github.com/FelpHendeson/flpAuthCore#readme",
+  "dependencies": {
+    "dotenv": "^16.4.5",
+    "fastify": "^5.7.4"
+  },
+  "devDependencies": {
+    "@commitlint/cli": "^19.6.1",
+    "@commitlint/config-conventional": "^19.6.0",
+    "@types/node": "^25.2.2",
+    "husky": "^9.1.7",
+    "lint-staged": "^15.4.3",
+    "standard-version": "^9.5.0",
+    "tsup": "^8.5.1",
+    "tsx": "^4.21.0",
+    "typescript": "^5.9.3"
+  },
+  "lint-staged": {
+    "*.{ts,tsx}": [
+      "npm run build"
+    ]
+  }
+}
