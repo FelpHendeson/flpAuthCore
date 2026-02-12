@@ -17,7 +17,7 @@ export default {
         'chore',
       ],
     ],
-    'header-max-length': [2, 'always', 72],
+    'header-max-length': [2, 'always', 200],
     'subject-case': [2, 'always', 'sentence-case'],
   },
 }
