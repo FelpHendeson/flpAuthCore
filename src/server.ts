@@ -1,25 +1,17 @@
 import 'dotenv/config'
-import Fastify from 'fastify'
-
-const fastify = Fastify({ logger: true })
+import appInstance from './app'
 
 const PORT = Number(process.env.PORT) || 3333
 const HOST = process.env.HOST || '0.0.0.0'
 
-fastify.get('/', async () => {
-  return { ok: true, message: 'Auth API' }
-})
-
-fastify.get('/health', async () => {
-  return { status: 'ok' }
-})
+const app = await appInstance();
 
 const start = async () => {
   try {
-    await fastify.listen({ port: PORT, host: HOST })
+    await app.listen({ port: PORT, host: HOST })
     console.log(`Servidor rodando em http://${HOST}:${PORT}`)
   } catch (err) {
-    fastify.log.error(err)
+    app.log.error(err)
     process.exit(1)
   }
 }
