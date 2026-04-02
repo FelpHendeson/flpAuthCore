@@ -1,15 +1,10 @@
-import Fastify from 'fastify'
+import Fastify from 'fastify';
+import appRoutes from './routes/routes';
 
 const appInstance = async () => {
     const app = Fastify({ logger: true })
 
-    app.get('/', async () => {
-        return { ok: true, message: 'Auth API' }
-    })
-
-    app.get('/health', async () => {
-        return { status: 'ok' }
-    })
+    app.register(appRoutes);
 
     return app;
 }
