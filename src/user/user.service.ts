@@ -1,6 +1,9 @@
 import { CreateUserInput, User, UserOutput } from './user.model';
 import { UserRepository } from './user.repository';
 
+/**
+ * Error thrown when user input fails validation rules.
+ */
 export class UserValidationError extends Error {
   constructor(message: string) {
     super(message);
@@ -8,6 +11,9 @@ export class UserValidationError extends Error {
   }
 }
 
+/**
+ * Error thrown when user uniqueness constraints are violated.
+ */
 export class DuplicateUserError extends Error {
   constructor(message: string) {
     super(message);
@@ -15,9 +21,19 @@ export class DuplicateUserError extends Error {
   }
 }
 
+/**
+ * Service responsible for user creation business rules.
+ */
 export class UserService {
   constructor(private readonly userRepository: UserRepository) {}
 
+  /**
+   * Creates a user after sanitization and validation.
+   * @param input - User creation payload.
+   * @returns Created user output payload.
+   * @throws UserValidationError
+   * @throws DuplicateUserError
+   */
   public async createUser(input: CreateUserInput): Promise<UserOutput> {
     const sanitizedInput = this.sanitizeInput(input);
     this.validateInput(sanitizedInput);
@@ -33,6 +49,11 @@ export class UserService {
     return savedUser.toOutput();
   }
 
+  /**
+   * Trims and normalizes user input values.
+   * @param input - Raw user payload.
+   * @returns Sanitized user payload.
+   */
   private sanitizeInput(input: CreateUserInput): CreateUserInput {
     return {
       name: input.name.trim(),
@@ -40,6 +61,11 @@ export class UserService {
     };
   }
 
+  /**
+   * Validates required user fields and email format.
+   * @param input - Sanitized user payload.
+   * @throws UserValidationError
+   */
   private validateInput(input: CreateUserInput): void {
     if (!input.name) {
       throw new UserValidationError('Name is required.');

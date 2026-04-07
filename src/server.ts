@@ -1,6 +1,9 @@
 import 'dotenv/config';
 import { Application } from './app';
 
+/**
+ * Handles application startup and Fastify listen lifecycle.
+ */
 export class Server {
   constructor(
     private readonly application: Application,
@@ -8,6 +11,9 @@ export class Server {
     private readonly host: string,
   ) {}
 
+  /**
+   * Starts the HTTP server.
+   */
   public async start(): Promise<void> {
     const app = await this.application.createApp();
 

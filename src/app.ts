@@ -5,7 +5,14 @@ import { UserController } from './user/user.controller';
 import { UserRepository } from './user/user.repository';
 import { UserService } from './user/user.service';
 
+/**
+ * Creates and wires the Fastify application and dependencies.
+ */
 export class Application {
+  /**
+   * Builds the Fastify app with routes and infrastructure dependencies.
+   * @returns Configured Fastify application instance.
+   */
   public async createApp(): Promise<FastifyInstance> {
     const app = Fastify({ logger: true });
     const databaseConnection = PrismaConnection.fromEnv();

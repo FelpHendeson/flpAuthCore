@@ -2,13 +2,25 @@ import { FastifyReply, FastifyRequest } from 'fastify';
 import { CreateUserInput } from './user.model';
 import { DuplicateUserError, UserService, UserValidationError } from './user.service';
 
+/**
+ * HTTP request contract for user creation route.
+ */
 interface CreateUserRequest {
   Body: CreateUserInput;
 }
 
+/**
+ * Controller responsible for user-related HTTP handlers.
+ */
 export class UserController {
   constructor(private readonly userService: UserService) {}
 
+  /**
+   * Handles HTTP creation of a user.
+   * @param request - Fastify request containing user creation payload.
+   * @param reply - Fastify reply instance.
+   * @returns HTTP response with created user or mapped error.
+   */
   public readonly createUser = async (
     request: FastifyRequest<CreateUserRequest>,
     reply: FastifyReply,
