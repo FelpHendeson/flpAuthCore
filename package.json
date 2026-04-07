@@ -8,6 +8,10 @@
     "build": "tsup",
     "start": "node dist/server.js",
     "dev": "tsx watch src/server.ts",
+    "prisma:generate": "prisma generate",
+    "prisma:migrate:dev": "prisma migrate dev",
+    "prisma:migrate:deploy": "prisma migrate deploy",
+    "prisma:studio": "prisma studio",
     "test": "echo \"Error: no test specified\" && exit 1",
     "prepare": "husky || true",
     "release": "standard-version",
@@ -27,6 +31,7 @@
   },
   "homepage": "https://github.com/FelpHendeson/flpAuthCore#readme",
   "dependencies": {
+    "@prisma/client": "^6.19.3",
     "dotenv": "^16.4.5",
     "fastify": "^5.7.4"
   },
@@ -36,6 +41,7 @@
     "@types/node": "^25.2.2",
     "husky": "^9.1.7",
     "lint-staged": "^15.4.3",
+    "prisma": "^6.19.3",
     "standard-version": "^9.5.0",
     "tsup": "^8.5.1",
     "tsx": "^4.21.0",
