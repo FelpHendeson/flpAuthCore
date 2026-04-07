@@ -49,6 +49,8 @@ Do not bypass these layers unless explicitly requested by the maintainer.
 1. Keep Conventional Commits and `standard-version` workflow.
 2. Maintain `CHANGELOG.md` as release source of truth.
 3. Classify commits with semantic intent (`feat`, `fix`, `refactor`, `docs`, `chore`, etc.).
+4. During pre-1.0 phase, prefer `release:patch` for daily progress and `release:minor` for feature milestones.
+5. Use `release:major` only when intentionally moving to `1.0.0`.
 
 ## Recommended Validation Flow
 1. `npm.cmd ci`

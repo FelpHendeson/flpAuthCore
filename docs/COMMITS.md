@@ -1,46 +1,55 @@
-# Convenção de commits e versão
+# Commit and release convention
 
-## Formato da mensagem
+## Commit format
 
-```
-<tipo>(<escopo opcional>): <descrição>
+```txt
+<type>(<optional-scope>): <description>
 
-[corpo opcional]
+[optional body]
 
-[rodapé opcional]
-```
-
-Exemplos válidos:
-
-- `feat: adiciona rota de login`
-- `fix: corrige validação do token`
-- `docs: atualiza README`
-- `chore: atualiza dependências`
-
-## Tipos e impacto na versão
-
-| Tipo       | Uso              | Ao rodar `npm run release` |
-|-----------|-------------------|-----------------------------|
-| **feat**  | Nova funcionalidade | **minor**: 0.0.1 → 0.1.0   |
-| **fix**   | Correção de bug   | **patch**: 0.0.1 → 0.0.2   |
-| **docs**, **style**, **refactor**, **perf**, **test**, **build**, **chore** | Outros | Não altera número (ou patch, conforme config) |
-
-Para **major** (1.0.0): use no corpo do commit:
-
-```
-feat: quebra contrato da API
-
-BREAKING CHANGE: rota /auth alterada
+[optional footer]
 ```
 
-Ou: `npm run release:major` / `npm run release:minor` para forçar o tipo de versão.
+Valid examples:
 
-## Fluxo
+- `feat: add login route`
+- `fix: correct token validation`
+- `docs: update README`
+- `chore: update dependencies`
 
-1. **A cada commit**: o hook valida a mensagem (Commitlint) e roda o build nos arquivos staged (lint-staged).
-2. **Quando for liberar versão**: rode `npm run release`. O standard-version lê os commits desde a última tag e sobe a versão (patch/minor/major), gera CHANGELOG e cria a tag git.
+## Release scripts
 
-Versão inicial do projeto: **0.0.1**.
+- `npm run release:first`: first release bootstrap.
+- `npm run release`: automatic bump based on commits.
+- `npm run release:patch`: force patch bump (`0.0.1 -> 0.0.2`).
+- `npm run release:minor`: force minor bump (`0.0.1 -> 0.1.0`).
+- `npm run release:major`: force major bump (`0.x.y -> 1.0.0`).
 
-- **Primeiro release** (criar tag 0.0.1 sem alterar versão): `npm run release:first`
-- Depois: `npm run release` sobe para 0.0.2 (fix), 0.1.0 (feat) ou 1.0.0 (BREAKING).
+## Pre-1.0 strategy (current project policy)
+
+While the project is still evolving, prefer controlled bumps:
+
+1. Use `npm run release:patch` for incremental progress and bug fixes.
+2. Use `npm run release:minor` when a meaningful feature block is complete.
+3. Avoid `npm run release:major` until the API is considered stable and production-ready.
+
+Expected progression example:
+
+`0.0.1 -> 0.0.2 -> 0.0.3 -> 0.1.0 -> 0.1.1 -> 0.1.2 -> 0.2.0 -> ... -> 1.0.0`
+
+## Commit types and semantic intent
+
+- `feat`: new feature
+- `fix`: bug fix
+- `docs`: documentation change
+- `style`: formatting only
+- `refactor`: internal code change without behavior change
+- `perf`: performance improvement
+- `test`: tests
+- `build`: build/dependency changes
+- `chore`: maintenance tasks
+
+## Workflow
+
+1. On each commit: hooks validate commit message and run staged checks.
+2. On each release: `standard-version` updates version, changelog, release commit, and git tag.
