@@ -16,3 +16,4 @@ Study and portfolio project focused on authentication and user management, desig
 - Task briefing template: `docs/ai/TASK_TEMPLATE.md`
 - PR review checklist: `docs/ai/PR_CHECKLIST.md`
 - Engineering standards: `docs/ai/ENGINEERING_STANDARDS.md`
+- MySQL Docker/WSL quick guide: `docs/MYSQL_WSL_DOCKER_GUIDE.md`
